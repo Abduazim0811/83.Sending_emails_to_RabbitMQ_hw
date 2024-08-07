@@ -33,10 +33,16 @@ func NewRabbitMQConsumer(config Config) (*RabbitMqConsumer, error) {
 		false,
 		nil,
 	)
-	
+
 	if err != nil {
 		return nil, err
 	}
 
-	
+	return &RabbitMqConsumer{
+		conn:    conn,
+		channel: channel,
+		config:  config,
+		mailer:  mailer.Mailer{},
+	}, nil
+
 }
